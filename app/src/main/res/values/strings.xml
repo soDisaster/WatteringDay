@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WatteringDay</string>
+    <string name="buttonUpdate">Modifier</string>
+    <string name="buttonDelete">Supprimer</string>
+    <string name="buttonAdd">Ajouter</string>
+    <string name="title_activity_plant">PlantActivity</string>
+    <string name="title_activity_list_plants_activty2">ListPlantsActivty2</string>
+</resources>
