@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class PlantsDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "("
                 + "idPlant INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "namePlant TEXT NOT NULL," + "watteringPlant INTEGER NOT NULL);");
+                + "namePlant TEXT NOT NULL," + "watteringPlant INTEGER NOT NULL," + "watteringDay INTEGER NOT NULL);");
     }
 
     @Override
@@ -45,33 +46,35 @@ public class PlantsDatabase extends SQLiteOpenHelper {
         bd.close();
     }
 
-    public long addPlant(Plant plant) {
+    public long addPlant(Plant p) {
 
         ContentValues valeurs = new ContentValues();
 
-        valeurs.put("namePlant", plant.getNamePlant());
-        valeurs.put("watteringPlant", plant.getWatteringPlant());
+        valeurs.put("namePlant", p.getNamePlant());
+        valeurs.put("watteringPlant", p.getWatteringPlant());
+        valeurs.put("watteringDay", p.getWatteringDay());
 
-        return bd.insert("plant", null, valeurs);
+        return bd.insert(TABLE_NAME, null, valeurs);
     }
 
-    public int updatePlant(Plant plant) {
+    public int updatePlant(Plant p) {
 
         ContentValues valeurs = new ContentValues();
 
-        valeurs.put("namePlant", plant.getNamePlant());
-        valeurs.put("watteringPlant", plant.getWatteringPlant());
+        valeurs.put("namePlant", p.getNamePlant());
+        valeurs.put("watteringPlant", p.getWatteringPlant());
+        valeurs.put("watteringDay", p.getWatteringDay());
 
-        return bd.update("plant", valeurs, "idPlant = " + plant.getIdPlant(), null);
+        return bd.update(TABLE_NAME, valeurs, "idPlant = " + p.getIdPlant(), null);
     }
 
     public int deletePlant(int idPlant) {
-        return bd.delete("plant", "idPlant = " + idPlant, null);
+        return bd.delete(TABLE_NAME, "idPlant = " + idPlant, null);
     }
 
     public Plant getPlant(int idPlant) {
 
-        Cursor cursor = bd.query("plant", null, "idPlant = " + idPlant, null, null,	null, null);
+        Cursor cursor = bd.query(TABLE_NAME, null, "idPlant = " + idPlant, null, null,	null, null);
 
         if (cursor.getCount() == 0)
             return null;
@@ -113,6 +116,7 @@ public class PlantsDatabase extends SQLiteOpenHelper {
         plant.setIdPlant(cursor.getInt(0));
         plant.setNamePlant(cursor.getString(1));
         plant.setWatteringPlant(cursor.getInt(2));
+        plant.setWatteringDay(cursor.getLong(3));
 
         return plant;
     }

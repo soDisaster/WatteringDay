@@ -10,6 +10,7 @@ public class Plant {
     private int idPlant;
     private String namePlant;
     private int watteringPlant;
+    private long watteringDay;
 
     public int getIdPlant() {
         return idPlant;
@@ -35,8 +36,16 @@ public class Plant {
         this.watteringPlant = watteringPlant;
     }
 
+    public long getWatteringDay() {
+        return watteringDay;
+    }
+
+    public void setWatteringDay(long watteringDay) {
+        this.watteringDay = watteringDay;
+    }
+
     @Override
     public String toString() {
-        return namePlant + ", " + watteringPlant;
+        return "Nouvelle Plante : " + idPlant + " " + namePlant + " " + watteringPlant + " " + watteringDay;
     }
 }
