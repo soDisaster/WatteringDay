@@ -3,20 +3,53 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/namePlant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#00BB00"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="NomPlante" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/daysPlant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold|italic"
-        android:text="NombreDeJours" />
+        <TextView
+            android:id="@+id/namePlant"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="NomPlante"
+            android:gravity="center_vertical|center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/daysPlant"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:textStyle="bold|italic"
+            android:textColor="#FFFF"
+            android:text="NombreDeJours"
+            android:gravity="center_vertical|center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/datePlant"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:textStyle="bold|italic"
+            android:textColor="#FFFF"
+            android:text="DatePlante"
+            android:gravity="center_vertical|center_horizontal" />
+    </LinearLayout>
 
 </LinearLayout>

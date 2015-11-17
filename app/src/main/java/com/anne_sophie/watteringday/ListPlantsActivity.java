@@ -5,16 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Anne-Sophie.
@@ -30,6 +35,9 @@ public class ListPlantsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_plants);
         bd = new PlantsDatabase(this);
+        Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
+        buttonAdd.setTextColor(Color.rgb(237, 127, 16));
+        buttonAdd.setBackgroundColor(Color.WHITE);
     }
 
     @Override
@@ -90,6 +98,7 @@ public class ListPlantsActivity extends ListActivity {
 
             TextView namePlant = (TextView) line.findViewById(R.id.namePlant);
             TextView daysPlant = (TextView) line.findViewById(R.id.daysPlant);
+            TextView datePlant = (TextView) line.findViewById(R.id.datePlant);
 
 
             list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -101,7 +110,7 @@ public class ListPlantsActivity extends ListActivity {
                         LayoutInflater xml = ListPlantsActivity.this.getLayoutInflater();
                         line = xml.inflate(R.layout.linesoflist, null);
                     }
-                    line.setBackgroundColor(Color.GREEN);
+                    line.setBackgroundColor(Color.rgb(58,157,35));
                     Plant p = plants.get(position);
                     p.setWatteringDay(System.currentTimeMillis());
                     ListPlantsActivity.this.bd.updatePlant(p);
@@ -121,22 +130,24 @@ public class ListPlantsActivity extends ListActivity {
             Timestamp today = new Timestamp(today_long);
 
             String nameAndWatteringPlants = getListAdapter().getItem(position).toString();
-            String[] data = nameAndWatteringPlants.split(" ");
+            String[] data = nameAndWatteringPlants.split(",");
 
-            namePlant.setText(data[4]);
-            daysPlant.setText(data[5]);
+            namePlant.setText(data[0]);
+            daysPlant.setText(data[1]);
+            datePlant.setText(data[2]);
+
 
             if (this.compareNumberOfDays(today, lastday) == 0) {
-                line.setBackgroundColor(Color.GREEN);
+                line.setBackgroundColor(Color.rgb(58,157,35));
             }
             else if (this.compareNumberOfDays(today, lastday) == numberOfDays || this.compareNumberOfDays(today, lastday) == numberOfDays - 1) {
                 line.setBackgroundColor(Color.rgb(237, 127, 16));
             }
             else if (this.compareNumberOfDays(today, lastday) < numberOfDays) {
-                line.setBackgroundColor(Color.GREEN);
+                line.setBackgroundColor(Color.rgb(58,157,35));
             }
             else if (this.compareNumberOfDays(today, lastday) > numberOfDays) {
-                line.setBackgroundColor(Color.RED);
+                line.setBackgroundColor(Color.rgb(219, 23, 2));
             }
             else {
                 line.setBackgroundColor(Color.BLACK);

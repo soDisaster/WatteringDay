@@ -1,6 +1,7 @@
 package com.anne_sophie.watteringday;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,9 +22,19 @@ public class PlantActivity extends Activity {
 
         editTextNamePlant = (EditText) findViewById(R.id.editTextNamePlant);
         editTextDays = (EditText) findViewById(R.id.editTextDays);
+
         buttonSave = (Button) findViewById(R.id.buttonOk);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         buttonDelete = (Button) findViewById(R.id.buttonDelete);
+
+        buttonSave.setTextColor(Color.rgb(237, 127, 16));
+        buttonSave.setBackgroundColor(Color.WHITE);
+
+        buttonUpdate.setTextColor(Color.rgb(237, 127, 16));
+        buttonUpdate.setBackgroundColor(Color.WHITE);
+
+        buttonDelete.setTextColor(Color.rgb(237, 127, 16));
+        buttonDelete.setBackgroundColor(Color.WHITE);
 
         bd = new PlantsDatabase(this);
 

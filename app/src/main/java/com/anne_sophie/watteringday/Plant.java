@@ -1,5 +1,13 @@
 package com.anne_sophie.watteringday;
 
+
+import android.util.Log;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by Anne-Sophie.
  * Classe métier pour une Plante
@@ -46,6 +54,16 @@ public class Plant {
 
     @Override
     public String toString() {
-        return "Nouvelle Plante : " + idPlant + " " + namePlant + " " + watteringPlant + " " + watteringDay;
+
+        Timestamp t = new Timestamp(getWatteringDay());
+        Date d = new Date(t.getTime());
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.FRANCE);
+        String date = df.format(d);
+        if(getWatteringPlant() == 1 || this.getWatteringPlant() == 0 )
+            return namePlant + ",Doit être arrosée tous les jours" + ", Dernière date d'arrosage : " + date;
+        else{
+            return namePlant + ", Doit être arrosée tous les " + watteringPlant + " jours, Dernière date d'arrosage : " + date;
+        }
+
     }
 }
